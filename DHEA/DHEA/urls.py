@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
-from results import views
+from searches import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
