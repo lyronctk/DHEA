@@ -21,5 +21,5 @@ from searches import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^results/', views.results, name='results'),
 ]

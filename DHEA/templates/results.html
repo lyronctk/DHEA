@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Results</title>
+  </head>
+  <body>
+    <h1>Results</h1>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Avg Procedure Cost</th>
+          <th>Avg Waiting Time</th>
+          <th>Quality Rank</th>
+          <th>Hospital 1</th>
+          <th>Hospital 2</th>
+          <th>Hospital 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for country in countries %}
+          <tr>
+            <td>
+              {{ country.name }}<br>
+              <small style="color: #888">Sick country bro</small>
+            </td>
+            <td>{{ country.avg_procedure_cost }}</td>
+            <td>{{ country.avg_waiting_time }}</td>
+            <td>{{ country.quality_rank }}</td>
+            <td>{{ country.hospital_1 }}</td>
+            <td>{{ country.hospital_2 }}</td>
+            <td>{{ country.hospital_3 }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
