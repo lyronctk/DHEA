@@ -1,6 +1,10 @@
-# OPERATION_NAME_HOLDER = 'Cataract surgery'
-# DEPARTURE_STR_HOLDER  = '2019-11-01'
-# ORIGIN_HOLDER         = 'BOS'
+# Knee replacement
+# DEL
+# 2019-10-15
+
+# PTCA
+# BOS
+# 2020-01-15
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -15,28 +19,14 @@ from dateutil.parser import parse
 from datetime import timedelta
 
 
-def autocompleteModel(request):
-    q = request.GET.get('term', '').capitalize()
-    search_qs = Hospital.objects.filter(procedure__startswith=q)
-    results = []
-    print(q)
-    for r in search_qs:
-        results.append(r.procedure)
-    data = json.dumps(results)
-    mimetype = 'application/json'
-    return HttpResponse(data, mimetype)
-
-
-
 def home(request):
     return render(request, 'home.html')
 
 
-
-def results(request):	
+def results(request):
 	procedure = request.GET.get('procedure', '')
-	city = request.GET.get('city', '')
-	date = request.GET.get('datepicker', '')
+	city      = request.GET.get('city', '')
+	date      = request.GET.get('datepicker', '')
 
 	OPERATION_NAME_HOLDER = procedure
 	DEPARTURE_STR_HOLDER  = date
@@ -66,8 +56,7 @@ def results(request):
 		card['wait_time']    = current_procedure.avg_waiting_time
 		card['quality_rank'] = current_country.quality_rank
 
-		card['total_cost']   = (card['nightly_cost'] * card['recovery_time']) + \
-								card['procedure_cost'] + card['travel_cost']
+		card['total_cost']   = (card['nightly_cost'] * card['recovery_time']) + card['procedure_cost'] + card['travel_cost']
 		card['total_cost'] = int(card['total_cost'])
 
 		card['hospital_1_name'] = current_country.hospital_1_name
@@ -87,6 +76,5 @@ def results(request):
 											'origin_country_name': origin_country.name,
 											'origin_procedure_wait': origin_procedure.avg_waiting_time,
 											'origin_country_quality': origin_country.quality_rank,
-											'origin_total_cost': origin_procedure.avg_procedure_cost + (current_procedure.avg_recovery_time * origin_country.avg_per_night_cost)})
-
+											'origin_total_cost': (origin_country.avg_per_night_cost * origin_procedure.avg_recovery_time) + origin_procedure.avg_procedure_cost})
 
