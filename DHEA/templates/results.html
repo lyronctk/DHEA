@@ -13,30 +13,30 @@
 <script src="https://kit.fontawesome.com/2d935c49d8.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-  {% for country in countries %}
+  {% for card in cards %}
   $(document).ready(
     function(){
-    del{{country.name|cut:" "}}W = ({{ country.avg_waiting_time }} - 100);
-    del{{country.name|cut:" "}}R = {{ country.quality_rank }} - 5;
-    del{{country.name|cut:" "}}C = {{ country.avg_procedure_cost }} - 40000;
-    {{ country.name|cut:" "}}color = $("#{{ country.name|cut:" "}}waitI").css("color");
+    del{{card.country_name|cut:" "}}W = ({{ card.wait_time }} - {{ origin_procedure_wait }});
+    del{{card.country_name|cut:" "}}R = {{ card.quality_rank }} - {{ origin_country_quality }};
+    del{{card.country_name|cut:" "}}C = {{ card.procedure_cost }} - {{ origin_procedure_cost }};
+    {{ card.country_name|cut:" "}}color = $("#{{ card.country_name|cut:" "}}waitI").css("color");
 
-    $("#{{ country.name|cut:" "|cut:"\n" }}").hover(function(){
-      $("#{{ country.name|cut:" "}}wait").text(Math.abs(del{{country.name|cut:" "}}W));
-      $("#{{ country.name|cut:" "}}rank").text(Math.abs(del{{country.name|cut:" "}}R));
-      $("#{{ country.name|cut:" "}}cost").text(Math.abs(del{{country.name|cut:" "}}C));
-      $("#{{ country.name|cut:" "}}waitI").css("color", del{{country.name|cut:" "}}W > 0 ? "#ff0000" : (del{{country.name|cut:" "}}W == 0 ? "#000000" : "#00ff00"));
-      $("#{{ country.name|cut:" "}}rankI").css("color", del{{country.name|cut:" "}}R > 0 ? "#ff0000" : (del{{country.name|cut:" "}}R == 0 ? "#000000" : "#00ff00"));
-      $("#{{ country.name|cut:" "}}costI").css("color", del{{country.name|cut:" "}}C > 0 ? "#ff0000" : (del{{country.name|cut:" "}}C == 0 ? "#000000" : "#00ff00"));
-      $("#{{ country.name|cut:" "}}t").text("ranks");
+    $("#{{ card.country_name|cut:" "|cut:"\n" }}").hover(function(){
+      $("#{{ card.country_name|cut:" "}}wait").text(Math.abs(del{{card.country_name|cut:" "}}W));
+      $("#{{ card.country_name|cut:" "}}rank").text(Math.abs(del{{card.country_name|cut:" "}}R));
+      $("#{{ card.country_name|cut:" "}}cost").text(Math.abs(del{{card.country_name|cut:" "}}C));
+      $("#{{ card.country_name|cut:" "}}waitI").css("color", del{{card.country_name|cut:" "}}W > 0 ? "#ff0000" : (del{{card.country_name|cut:" "}}W == 0 ? "#000000" : "#00ff00"));
+      $("#{{ card.country_name|cut:" "}}rankI").css("color", del{{card.country_name|cut:" "}}R > 0 ? "#ff0000" : (del{{card.country_name|cut:" "}}R == 0 ? "#000000" : "#00ff00"));
+      $("#{{ card.country_name|cut:" "}}costI").css("color", del{{card.country_name|cut:" "}}C > 0 ? "#ff0000" : (del{{card.country_name|cut:" "}}C == 0 ? "#000000" : "#00ff00"));
+      $("#{{ card.country_name|cut:" "}}t").text("ranks");
     }, function(){
-      $("#{{ country.name|cut:" "}}wait").text({{ country.avg_waiting_time }});
-      $("#{{ country.name|cut:" "}}rank").text({{ country.quality_rank }});
-      $("#{{ country.name|cut:" "}}cost").text({{ country.avg_procedure_cost }});
-      $("#{{ country.name|cut:" "}}waitI").css("color", {{ country.name|cut:" "}}color);
-      $("#{{ country.name|cut:" "}}rankI").css("color", {{ country.name|cut:" "}}color);
-      $("#{{ country.name|cut:" "}}costI").css("color", {{ country.name|cut:" "}}color);
-      $("#{{ country.name|cut:" "}}t").text("rank");
+      $("#{{ card.country_name|cut:" "}}wait").text({{ card.wait_time }});
+      $("#{{ card.country_name|cut:" "}}rank").text({{ card.quality_rank }});
+      $("#{{ card.country_name|cut:" "}}cost").text({{ card.procedure_cost }});
+      $("#{{ card.country_name|cut:" "}}waitI").css("color", {{ card.country_name|cut:" "}}color);
+      $("#{{ card.country_name|cut:" "}}rankI").css("color", {{ card.country_name|cut:" "}}color);
+      $("#{{ card.country_name|cut:" "}}costI").css("color", {{ card.country_name|cut:" "}}color);
+      $("#{{ card.country_name|cut:" "}}t").text("rank");
     })
   }
   )
@@ -44,101 +44,101 @@
 </script>
   </head>
   <body>
-      <h1 style="text-align: center">Medical Destinations!</h1> 
-      <div class="card card-big"><div class="container">
+      <h1 style="text-align: center"><font color="white">Medical Destinations</font></h1> 
+      <div class="card card-big"><div class="container" style="padding: 10px">
         <div class="side-by-side">
-            <h2>Origin</h2>
+            <h2>Origin: {{ origin_country_name }}</h2>
             </div>
             <div class="side-by-side" style="width:2.5%"></div>
             <div class="side-by-side" style="float: right;">
             <div class="side-by-side" style="text-align: center">
-                <i><b>100 days</b></i> <br/>
+                <i><b>{{ origin_procedure_wait }} days</b></i> <br/>
             <i class="fas fa-clock"></i><br/>
             </div>
             <div class="side-by-side vl"></div>
             <div id="rank" class="side-by-side" style="text-align: center">
-                <i>rank </i><i><br/>#<b>5</b></i><br/>
+                <i>rank </i><i><br/>#<b>{{ origin_country_quality }}</b></i><br/>
             <i class="fas fa-medal"></i>
             </div>
             <div class="side-by-side vl"></div>
             <div id="cost" class="side-by-side" style="text-align: center">
-                <i>$<b>40000</b></i><br/>
+                <i>$<b>{{ origin_procedure_cost }}</b></i><br/>
             <i class="fas fa-coins"></i>
             </div>
       
             </div>
             <br/>
-            <i>Search for: "name of operation" "date"</i>
+            <i>Search Parameters: "{{ operation_name }}" "{{ target_date }}"</i>
       </div></div>
       <br/><br/>
-        {% for country in countries %}
+        {% for card in cards %}
         <div class="card card-big"> 
-          <div id = "{{ country.name|cut:" " }}" class="coloring" style="z-index: 0; position: absolute; top: 0px; right:0px; background-color: {% cycle '#BA68C8' '#52A434' '#F7AA17' '#EF5350' as rcolor %}; border-top-left-radius: 5px; border-top-right-radius: 5px"></div>
+          <div id = "{{ card.country_name|cut:" " }}" class="coloring" style="z-index: 0; position: absolute; top: 0px; right:0px; background-color: {% cycle '#BA68C8' '#52A434' '#F7AA17' '#EF5350' as rcolor %}; border-top-left-radius: 5px; border-top-right-radius: 5px"></div>
             <div class="container" style="z-index: 2; position: relative; top: 10px;">
               <div class="side-by-side">
-              <h2>{{ country.name }}</h2> 
+              <h2>{{ card.country_name }}</h2> 
               </div>
               <div class="side-by-side" style="width:2.5%"></div>
               <div class="side-by-side" style="float: right; position: relative; top: 10px">
               <div class="side-by-side" style="text-align: center">
-                  <i><b id="{{ country.name|cut:" "}}wait">{{ country.avg_waiting_time }}</b><br/> days</i> <br/>
-              <i class="fas fa-clock" id="{{ country.name|cut:" "}}waitI" style="color: {{rcolor}} "></i><br/>
+                  <i><b id="{{ card.country_name|cut:" "}}wait">{{ card.wait_time }}</b><br/> days</i> <br/>
+              <i class="fas fa-clock" id="{{ card.country_name|cut:" "}}waitI" style="color: {{rcolor}} "></i><br/>
               </div>
               <div class="side-by-side vl"></div>
               <div id="rank" class="side-by-side" style="text-align: center">
-                  <i id="{{ country.name|cut:" "}}t">rank </i><i><br/>#<b id="{{ country.name|cut:" "}}rank">{{ country.quality_rank }}</b></i><br/>
-              <i class="fas fa-medal" id="{{ country.name|cut:" "}}rankI" style="color: {{ rcolor }}"></i>
+                  <i id="{{ card.country_name|cut:" "}}t">rank </i><i><br/>#<b id="{{ card.country_name|cut:" "}}rank">{{ card.quality_rank }}</b></i><br/>
+              <i class="fas fa-medal" id="{{ card.country_name|cut:" "}}rankI" style="color: {{ rcolor }}"></i>
               </div>
               <div class="side-by-side vl"></div>
               <div id="cost" class="side-by-side" style="text-align: center">
-                  <i>$<b id="{{ country.name|cut:" "}}cost">{{ country.avg_procedure_cost }}</b></i><br/>
-              <i class="fas fa-coins" id="{{ country.name|cut:" "}}costI" style="color: {{ rcolor }}"></i>
+                  <i>$<b id="{{ card.country_name|cut:" "}}cost">{{ card.total_cost }}</b></i><br/>
+              <i class="fas fa-coins" id="{{ card.country_name|cut:" "}}costI" style="color: {{ rcolor }}"></i>
               </div>
-            
+              <hr style="border: 1px solid {{ rcolor }};"/>
                     </div>
 
                     <br/><br/>
                     <div class="side-by-side" style="text-align: center">
-                        <i>${{ country.avg_procedure_cost }}</i><br/>
+                        <i>${{ card.procedure_cost }}</i><br/>
                     <i class="fas fa-wrench" style="color: {{ rcolor }}"></i>
                     </div>
                     <div class="side-by-side vl"></div>
                     <div class="side-by-side" style="text-align: center">
-                  <i>${{ country.avg_waiting_time }}/<br/>night</i><br/>
+                  <i>${{ card.nightly_cost }}/<br/>night</i><br/>
               <i class="fas fa-moon" style="color: {{ rcolor }}"></i>
               </div>
               <div class="side-by-side vl"></div>
               <div class="side-by-side" style="text-align: center">
-                  <i>{{ country.avg_waiting_time }}<br/>days</i><br/>
+                  <i>{{ card.recovery_time }}<br/>days</i><br/>
               <i class="fas fa-bed" style="color: {{ rcolor }}"></i>
               </div>
               <div class="side-by-side vl"></div>
-                    <div class="side-by-side" style="text-align: center">
-                  <br/><i>${{ country.avg_waiting_time }}</i><br/>
+              <div class="side-by-side" style="text-align: center">
+                  <br/><i>${{ card.travel_cost }}</i><br/>
               <i class="fas fa-plane" style="color: {{ rcolor }}"></i>
               </div>
           
               <br/>
               <br/>
-              <hr style="border: 1px solid {{ rcolor }}"/>
+              <hr style="border: 1px solid {{ rcolor }};"/>
               <div class="card card-small side-by-side" style="padding: 0px 0px">
-                <a href="https://youtube.com" target="_blank">
+                <a href="{{ card.hospital_1_link }}" target="_blank">
                 <div class="container">
-                    {{ country.hospital_1 }}
+                    {{ card.hospital_1_name }}
               </div>
             </a>
               </div>
               <div class="card card-small side-by-side" style="padding: 0px 0px">
-                  <a href="https://youtube.com" target="_blank">
+                  <a href="{{ card.hospital_2_link }}" target="_blank">
                   <div class="container">
-                      {{ country.hospital_2 }}
+                      {{ card.hospital_2_name }}
                 </div>
                 </a>
                 </div>
                 <div class="card card-small side-by-side" style="padding: 0px 0px">
-                    <a href="https://youtube.com" target="_blank">
+                    <a href="{{ card.hospital_3_link }}" target="_blank">
                     <div class="container">
-                        {{ country.hospital_3 }}
+                        {{ card.hospital_3_name }}
                   </div>
                   </div>
                 </a>
@@ -148,3 +148,60 @@
         {% endfor %}
   </body>
 </html>
+
+
+<a href="https://codepen.io/P1N2O/full/pyBNzX" target="_blank"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#eeeeee"><path d="M143.19336,21.43001c-0.26705,0.00844 -0.53341,0.03181 -0.79785,0.06999h-34.89551c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h18.53256l-66.59961,66.59961c-1.8722,1.79752 -2.62637,4.46674 -1.97164,6.97823c0.65473,2.51149 2.61604,4.4728 5.12753,5.12753c2.51149,0.65473 5.18071,-0.09944 6.97823,-1.97165l66.59961,-66.59961v18.53255c-0.03655,2.58456 1.32136,4.98858 3.55376,6.29153c2.2324,1.30295 4.99342,1.30295 7.22582,0c2.2324,-1.30295 3.59031,-3.70697 3.55376,-6.29153v-34.9235c0.28889,-2.08845 -0.35639,-4.19816 -1.76411,-5.76769c-1.40772,-1.56953 -3.43507,-2.43964 -5.54253,-2.3788zM35.83333,21.5c-7.83362,0 -14.33333,6.49972 -14.33333,14.33333v100.33333c0,7.83362 6.49972,14.33333 14.33333,14.33333h100.33333c7.83362,0 14.33333,-6.49972 14.33333,-14.33333v-43c0.03655,-2.58456 -1.32136,-4.98858 -3.55376,-6.29153c-2.2324,-1.30295 -4.99342,-1.30295 -7.22582,0c-2.2324,1.30295 -3.59031,3.70697 -3.55376,6.29153v43h-100.33333v-100.33333h43c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z"></path></g></g></svg></a>
+
+
+
+<style>
+  body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: "Exo", sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*.container {
+  width: 100%;
+  position: absolute;
+  top: 35%;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+h3 {
+  color: #eee;
+  font-weight: 100;
+}
+
+h5 {
+  color:#eee;
+  font-weight:300;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: #ddd;
+}*/
+
+</style>

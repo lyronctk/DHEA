@@ -6,16 +6,14 @@ import requests
 import json
 
 
-AMADEUS_ACCESS_TOKEN = 'Aw3VklcCfniYIq6wXK9AVAEFEycW'
+AMADEUS_ACCESS_TOKEN = '3KLUAfAf6MUBdvvSzYsWuRrscRKb'
 FLIGHT_OFFERS_URL = "https://test.api.amadeus.com/v1/shopping/flight-offers"
-NUM_FLIGHTS = 100
+NUM_FLIGHTS = 20
 
 
 def get_price_with_tax(response):
-	price_dumps = [response.json()['data'][i]['offerItems'][0]['price'] 
-				for i in range(NUM_FLIGHTS)]
-	with_taxes = [float(pd['total']) + float(pd['totalTaxes']) 
-				for pd in price_dumps]
+	price_dumps = [response.json()['data'][i]['offerItems'][0]['price'] for i in range(NUM_FLIGHTS)]
+	with_taxes = [float(pd['total']) + float(pd['totalTaxes']) for pd in price_dumps]
 
 	return min(with_taxes)
 
@@ -65,5 +63,11 @@ def get_cheapest_travel(origin, destination, departure_date, avg_recovery_time):
 
 	r = requests.get(FLIGHT_OFFERS_URL + body, 
 					 headers=headers)
+
+	# print("===================")
+	# print("BODY: " + str(body))
+	# print("RESPONSE: " + str(r))
+	# print("===================")
+
 	return get_price_with_tax(r)
 
