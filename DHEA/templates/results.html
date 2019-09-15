@@ -11,37 +11,99 @@
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
 <script src="https://kit.fontawesome.com/2d935c49d8.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  {% for country in countries %}
+  $(document).ready(
+    function(){
+    del{{country.name|cut:" "}}W = ({{ country.avg_waiting_time }} - 100);
+    del{{country.name|cut:" "}}R = {{ country.quality_rank }} - 5;
+    del{{country.name|cut:" "}}C = {{ country.avg_procedure_cost }} - 40000;
+    {{ country.name|cut:" "}}color = $("#{{ country.name|cut:" "}}waitI").css("color");
+
+    $("#{{ country.name|cut:" "|cut:"\n" }}").hover(function(){
+      $("#{{ country.name|cut:" "}}wait").text(Math.abs(del{{country.name|cut:" "}}W));
+      $("#{{ country.name|cut:" "}}rank").text(Math.abs(del{{country.name|cut:" "}}R));
+      $("#{{ country.name|cut:" "}}cost").text(Math.abs(del{{country.name|cut:" "}}C));
+      $("#{{ country.name|cut:" "}}waitI").css("color", del{{country.name|cut:" "}}W > 0 ? "#ff0000" : (del{{country.name|cut:" "}}W == 0 ? "#000000" : "#00ff00"));
+      $("#{{ country.name|cut:" "}}rankI").css("color", del{{country.name|cut:" "}}R > 0 ? "#ff0000" : (del{{country.name|cut:" "}}R == 0 ? "#000000" : "#00ff00"));
+      $("#{{ country.name|cut:" "}}costI").css("color", del{{country.name|cut:" "}}C > 0 ? "#ff0000" : (del{{country.name|cut:" "}}C == 0 ? "#000000" : "#00ff00"));
+      $("#{{ country.name|cut:" "}}t").text("ranks");
+    }, function(){
+      $("#{{ country.name|cut:" "}}wait").text({{ country.avg_waiting_time }});
+      $("#{{ country.name|cut:" "}}rank").text({{ country.quality_rank }});
+      $("#{{ country.name|cut:" "}}cost").text({{ country.avg_procedure_cost }});
+      $("#{{ country.name|cut:" "}}waitI").css("color", {{ country.name|cut:" "}}color);
+      $("#{{ country.name|cut:" "}}rankI").css("color", {{ country.name|cut:" "}}color);
+      $("#{{ country.name|cut:" "}}costI").css("color", {{ country.name|cut:" "}}color);
+      $("#{{ country.name|cut:" "}}t").text("rank");
+    })
+  }
+  )
+  {% endfor %}
+</script>
   </head>
   <body>
-    <h1 style="text-align: center">Results</h1>
+      <h1 style="text-align: center">Results</h1> 
+      <div class="card card-big"><div class="container">
+        <div class="side-by-side">
+            <h2>Origin</h2>
+            </div>
+            <div class="side-by-side" style="width:2.5%"></div>
+            <div class="side-by-side" style="float: right;">
+            <div class="side-by-side" style="text-align: center">
+                <i><b>100 days</b></i> <br/>
+            <i class="fas fa-clock"></i><br/>
+            </div>
+            <div class="side-by-side vl"></div>
+            <div id="rank" class="side-by-side" style="text-align: center">
+                <i>rank </i><i><br/>#<b>5</b></i><br/>
+            <i class="fas fa-medal"></i>
+            </div>
+            <div class="side-by-side vl"></div>
+            <div id="cost" class="side-by-side" style="text-align: center">
+                <i>$<b>40000</b></i><br/>
+            <i class="fas fa-coins"></i>
+            </div>
+      
+            </div>
+            <br/>
+            <i>Search for: "name of operation" "date"</i>
+      </div></div>
+      <br/><br/>
         {% for country in countries %}
-        <div class="card card-big">
-          <div class="coloring" style="z-index: 0; position: absolute; top: 0px; right:0px; background-color: {% cycle '#BA68C8' '#52A434' '#F7AA17' '#EF5350' as rcolor %}; border-top-left-radius: 5px; border-top-right-radius: 5px"></div>
+        <div class="card card-big"> 
+          <div id = "{{ country.name|cut:" " }}" class="coloring" style="z-index: 0; position: absolute; top: 0px; right:0px; background-color: {% cycle '#BA68C8' '#52A434' '#F7AA17' '#EF5350' as rcolor %}; border-top-left-radius: 5px; border-top-right-radius: 5px"></div>
             <div class="container" style="z-index: 2; position: relative; top: 10px;">
               <div class="side-by-side">
-              <h1>{{ country.name }}</h1> 
+              <h2>{{ country.name }}</h2> 
               </div>
-              <div class="side-by-side" style="float: right">
-                    <h1>${{ country.avg_procedure_cost }}</h1>
+              <div class="side-by-side" style="width:2.5%"></div>
+              <div class="side-by-side" style="float: right; position: relative; top: 10px">
+              <div class="side-by-side" style="text-align: center">
+                  <i><b id="{{ country.name|cut:" "}}wait">{{ country.avg_waiting_time }}</b><br/> days</i> <br/>
+              <i class="fas fa-clock" id="{{ country.name|cut:" "}}waitI" style="color: {{rcolor}} "></i><br/>
+              </div>
+              <div class="side-by-side vl"></div>
+              <div id="rank" class="side-by-side" style="text-align: center">
+                  <i id="{{ country.name|cut:" "}}t">rank </i><i><br/>#<b id="{{ country.name|cut:" "}}rank">{{ country.quality_rank }}</b></i><br/>
+              <i class="fas fa-medal" id="{{ country.name|cut:" "}}rankI" style="color: {{ rcolor }}"></i>
+              </div>
+              <div class="side-by-side vl"></div>
+              <div id="cost" class="side-by-side" style="text-align: center">
+                  <i>$<b id="{{ country.name|cut:" "}}cost">{{ country.avg_procedure_cost }}</b></i><br/>
+              <i class="fas fa-coins" id="{{ country.name|cut:" "}}costI" style="color: {{ rcolor }}"></i>
+              </div>
+            
                     </div>
 
                     <br/><br/>
-              <div class="side-by-side" style="text-align: center">
-                  <i>{{ country.avg_waiting_time }}<br/> days</i> <br/>
-              <i class="fas fa-clock" style="color: {{rcolor}} "></i><br/>
-              </div>
-              <div class="side-by-side vl"></div>
-              <div class="side-by-side" style="text-align: center">
-                  <i>rank <br/>#{{ country.quality_rank }}</i><br/>
-              <i class="fas fa-medal" style="color: {{ rcolor }}"></i>
-              </div>
-              <div class="side-by-side vl"></div>
-              <div class="side-by-side" style="text-align: center">
-                  <i>${{ country.avg_procedure_cost }}</i><br/>
-              <i class="fas fa-coins" style="color: {{ rcolor }}"></i>
-              </div>
-              <div class="side-by-side vl"></div>
-              <div class="side-by-side" style="text-align: center">
+                    <div class="side-by-side" style="text-align: center">
+                        <i>${{ country.avg_procedure_cost }}</i><br/>
+                    <i class="fas fa-wrench" style="color: {{ rcolor }}"></i>
+                    </div>
+                    <div class="side-by-side vl"></div>
+                    <div class="side-by-side" style="text-align: center">
                   <i>${{ country.avg_waiting_time }}/<br/>night</i><br/>
               <i class="fas fa-moon" style="color: {{ rcolor }}"></i>
               </div>
@@ -50,10 +112,10 @@
                   <i>{{ country.avg_waiting_time }}<br/>days</i><br/>
               <i class="fas fa-bed" style="color: {{ rcolor }}"></i>
               </div>
-              <div class="card card-mid side-by-side" style="float:right">
-                <div class="container">
-                <i>Flight information here...</i>
-                </div>
+              <div class="side-by-side vl"></div>
+                    <div class="side-by-side" style="text-align: center">
+                  <br/><i>${{ country.avg_waiting_time }}</i><br/>
+              <i class="fas fa-plane" style="color: {{ rcolor }}"></i>
               </div>
           
               <br/>
