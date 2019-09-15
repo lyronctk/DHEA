@@ -48,7 +48,7 @@ AMADEUS_ACCESS_TOKEN = 'Y9osVfJ1J1UrBnhfgzfs8jNz4D7B'
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 			'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
 			'y', 'z']
-PAGE_LIMIT = 100
+PAGE_LIMIT = 300
 
 
 def main():

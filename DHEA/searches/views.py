@@ -19,7 +19,6 @@ def results(request):
     departure = datetime.strptime('2020-08-01', '%Y-%m-%d')
     cheapest_travel = get_cheapest_travel('NYC', 'MAD', departure, 40)
 
-
     print("LOWEST PRICE: " + str(cheapest_travel))
 
     return render(request, 'results.html', {'countries': countries})
