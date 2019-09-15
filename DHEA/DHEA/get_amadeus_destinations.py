@@ -43,12 +43,12 @@ import sys
 
 
 AMADEUS_SEARCH_URL = "https://test.api.amadeus.com/v1/reference-data/locations"
-AMADEUS_ACCESS_TOKEN = 'Aw3VklcCfniYIq6wXK9AVAEFEycW'
+AMADEUS_ACCESS_TOKEN = 'Y9osVfJ1J1UrBnhfgzfs8jNz4D7B'
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 			'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
 			'y', 'z']
-PAGE_LIMIT = 50
+PAGE_LIMIT = 100
 
 
 def main():

@@ -17,3 +17,9 @@ for country_name in countries:
 						   hospital_3='Coolset third' + str(uniq_ctr))
 	uniq_ctr += 1
 	
+
+
+
+Country.objects.all().delete()
+Procedure.objects.all().delete()
+
