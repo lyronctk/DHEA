@@ -15,3 +15,4 @@ for country_name in countries:
 						   hospital_2='Cooler second' + str(uniq_ctr),
 						   hospital_3='Coolset third' + str(uniq_ctr))
 	uniq_ctr += 1
+	
