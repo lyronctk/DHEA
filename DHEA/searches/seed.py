@@ -4,9 +4,9 @@ from searches.models import Procedure
 from searches.models import Country
 import csv
 
-Country.objects.all().delete()
 Procedure.objects.all().delete()
-with open('country_db.csv') as csvfile:
+Country.objects.all().delete()
+with open('DHEA/CSVs/country_db.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
     	Country.objects.create(name=row['name'],
@@ -22,11 +22,11 @@ with open('country_db.csv') as csvfile:
     						   )
 
 
-with open('procedure_db.csv') as csvfile:
+with open('DHEA/CSVs/procedure_db.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
     	Procedure.objects.create(name=row['name'],
-    						     country=row['country'],
+    						     country=Country.objects.get(name=row['country']),
     						     avg_procedure_cost=row['avg_procedure_cost'],
     						     avg_waiting_time=row['avg_waiting_time'],
     						     avg_recovery_time=row['avg_recovery_time']

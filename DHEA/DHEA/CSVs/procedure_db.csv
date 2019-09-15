@@ -1,0 +1,25 @@
+name,country,avg_procedure_cost,avg_waiting_time,avg_recovery_time
+Coronary bypass,United States,123000,49,7
+PTCA,United States,28200,38,1
+Hip replacement,United States,40364,199,3
+Knee replacement,United States,35000,350,1
+Hysterectomy,United States,15400,73,2
+Cataract surgery,United States,3500,117,0
+Coronary bypass,India,7900,62,7
+PTCA,India,5700,35,1
+Hip replacement,India,7200,233,3
+Knee replacement,India,6600,396,1
+Hysterectomy,India,3200,82,2
+Cataract surgery,India,1500,249,0
+Coronary bypass,Spain,25100,74,7
+PTCA,Spain,9900,42,1
+Hip replacement,Spain,9100,177,3
+Knee replacement,Spain,13700,212,1
+Hysterectomy,Spain,5900,102,2
+Cataract surgery,Spain,2400,118,0
+Coronary bypass,United Kingdom,25500,51,7
+PTCA,United Kingdom,9200,41,1
+Hip replacement,United Kingdom,15400,85,3
+Knee replacement,United Kingdom,15100,90,1
+Hysterectomy,United Kingdom,8800,51,2
+Cataract surgery,United Kingdom,2100,62,0

@@ -26,7 +26,7 @@ class Country(models.Model):
 
 
 class Procedure(models.Model):
-    name    = models.CharField(max_length=30, unique=True, default="")
+    name    = models.CharField(max_length=30, default="")
     country = models.ForeignKey(Country, related_name='procedures', on_delete=models.PROTECT)
 
     avg_procedure_cost = models.IntegerField(default=0)
