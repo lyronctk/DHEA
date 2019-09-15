@@ -1,40 +1,88 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<script src="https://kit.fontawesome.com/2d935c49d8.js"></script>
   </head>
   <body>
-    <h1>Results</h1>
-
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Country</th>
-          <th>Avg Procedure Cost</th>
-          <th>Avg Waiting Time</th>
-          <th>Quality Rank</th>
-          <th>Hospital 1</th>
-          <th>Hospital 2</th>
-          <th>Hospital 3</th>
-        </tr>
-      </thead>
-      <tbody>
+    <h1 style="text-align: center">Results</h1>
         {% for country in countries %}
-          <tr>
-            <td>
-              {{ country.name }}<br>
-              <small style="color: #888">Sick country bro</small>
-            </td>
-            <td>{{ country.avg_procedure_cost }}</td>
-            <td>{{ country.avg_waiting_time }}</td>
-            <td>{{ country.quality_rank }}</td>
-            <td>{{ country.hospital_1 }}</td>
-            <td>{{ country.hospital_2 }}</td>
-            <td>{{ country.hospital_3 }}</td>
-          </tr>
+        <div class="card card-big">
+          <div class="coloring" style="z-index: 0; position: absolute; top: 0px; right:0px; background-color: {% cycle '#BA68C8' '#52A434' '#F7AA17' '#EF5350' as rcolor %}; border-top-left-radius: 5px; border-top-right-radius: 5px"></div>
+            <div class="container" style="z-index: 2; position: relative; top: 10px;">
+              <div class="side-by-side">
+              <h1>{{ country.name }}</h1> 
+              </div>
+              <div class="side-by-side" style="float: right">
+                    <h1>${{ country.avg_procedure_cost }}</h1>
+                    </div>
+
+                    <br/><br/>
+              <div class="side-by-side" style="text-align: center">
+                  <i>{{ country.avg_waiting_time }}<br/> days</i> <br/>
+              <i class="fas fa-clock" style="color: {{rcolor}} "></i><br/>
+              </div>
+              <div class="side-by-side vl"></div>
+              <div class="side-by-side" style="text-align: center">
+                  <i>rank <br/>#{{ country.quality_rank }}</i><br/>
+              <i class="fas fa-medal" style="color: {{ rcolor }}"></i>
+              </div>
+              <div class="side-by-side vl"></div>
+              <div class="side-by-side" style="text-align: center">
+                  <i>${{ country.avg_procedure_cost }}</i><br/>
+              <i class="fas fa-coins" style="color: {{ rcolor }}"></i>
+              </div>
+              <div class="side-by-side vl"></div>
+              <div class="side-by-side" style="text-align: center">
+                  <i>${{ country.avg_waiting_time }}/<br/>night</i><br/>
+              <i class="fas fa-moon" style="color: {{ rcolor }}"></i>
+              </div>
+              <div class="side-by-side vl"></div>
+              <div class="side-by-side" style="text-align: center">
+                  <i>{{ country.avg_waiting_time }}<br/>days</i><br/>
+              <i class="fas fa-bed" style="color: {{ rcolor }}"></i>
+              </div>
+              <div class="card card-mid side-by-side" style="float:right">
+                <div class="container">
+                <i>Flight information here...</i>
+                </div>
+              </div>
+          
+              <br/>
+              <br/>
+              <hr style="border: 1px solid {{ rcolor }}"/>
+              <div class="card card-small side-by-side" style="padding: 0px 0px">
+                <a href="https://youtube.com" target="_blank">
+                <div class="container">
+                    {{ country.hospital_1 }}
+              </div>
+            </a>
+              </div>
+              <div class="card card-small side-by-side" style="padding: 0px 0px">
+                  <a href="https://youtube.com" target="_blank">
+                  <div class="container">
+                      {{ country.hospital_2 }}
+                </div>
+                </a>
+                </div>
+                <div class="card card-small side-by-side" style="padding: 0px 0px">
+                    <a href="https://youtube.com" target="_blank">
+                    <div class="container">
+                        {{ country.hospital_3 }}
+                  </div>
+                  </div>
+                </a>
+                  <br/><br/>
+            </div>
+            </div><br/><br/>
         {% endfor %}
-      </tbody>
-    </table>
   </body>
 </html>
