@@ -3,7 +3,7 @@
 from searches.models import Country
 import random
 
-cities = ['Rome', 'Singapore', 'Madrid', 'Oslo', 'Lisbon', 'London', 'Dublin', 'Bogota', 'Stockholm', 'Jerusalem', 'Toronto', 'Helsinki', 'Sydney', 'Santiago', 'Copenhagen', 'San Jose', 'Boston', 'Ljubljana', 'Wellington', 'Bangkok', 'Kuala Lumpur', 'Warsaw', 'Budapest', 'Istanbul', 'Tallinn', 'Amman', 'Mexico City', 'Seoul', 'New Delhi', 'Hanoi']
+countries = ['Australia', 'Canada', 'France', 'United Kingdom', 'United States of America']
 
 uniq_ctr = 123
 Country.objects.all().delete()
