@@ -1,9 +1,18 @@
-h1 {
+h1, h2, h3 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body{
   padding: 8px 8px;
+}
+
+b {
+  font-size: 150%;
+}
+
+.fas {
+  position: relative;
+  top: 2px;
 }
 
 .card-big {
@@ -64,12 +73,15 @@ i {
 
 .vl {
   border-left: 1.25px solid #cccccc;
-  height: 60px;
+  position: relative;
+  left: 5px;
+  padding: 0px 7px 0px 0px;
+  height: 40px;
 }
 
 .coloring {
- height: 10px;
+ height: 15px;
  width: 100%;
  transition: 0.3s;
 }
-.coloring:hover {height: 90px}
+.coloring:hover {height: 95px}
