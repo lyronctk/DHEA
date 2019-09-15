@@ -17,9 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
-from boards import views
+from searches import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^results/', views.results, name='results'),
 ]
