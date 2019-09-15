@@ -11,14 +11,36 @@ from dateutil.parser import parse
 from datetime import timedelta
 
 
+def autocompleteModel(request):
+    q = request.GET.get('term', '').capitalize()
+    search_qs = Hospital.objects.filter(procedure__startswith=q)
+    results = []
+    print(q)
+    for r in search_qs:
+        results.append(r.procedure)
+    data = json.dumps(results)
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+
+
 def home(request):
-    return HttpResponse('Hello, World!')
+    return render(request, 'home.html')
 
 
-def results(request):
-	OPERATION_NAME_HOLDER = 'Hip replacement'
-	DEPARTURE_STR_HOLDER  = '2020-08-01'
-	ORIGIN_HOLDER         = 'BOS'
+
+def results(request):	
+	procedure = request.GET.get('procedure', '')
+	city = request.GET.get('city', '')
+	date = request.GET.get('datepicker', '')
+	
+	# OPERATION_NAME_HOLDER = 'Hip replacement'
+	# DEPARTURE_STR_HOLDER  = '2020-08-01'
+	# ORIGIN_HOLDER         = 'BOS'
+
+	OPERATION_NAME_HOLDER = procedure
+	DEPARTURE_STR_HOLDER  = date
+	ORIGIN_HOLDER         = city
 
 	origin_country   = Country.objects.get(city=ORIGIN_HOLDER)
 	origin_procedure = Procedure.objects.get(name=OPERATION_NAME_HOLDER, country=origin_country)
@@ -65,5 +87,6 @@ def results(request):
 											'origin_country_name': origin_country.name,
 											'origin_procedure_wait': origin_procedure.avg_waiting_time,
 											'origin_country_quality': origin_country.quality_rank,
-											'origin_procedure_cost': origin_procedure.avg_procedure_cost})
+											'origin_total_cost': origin_procedure.avg_procedure_cost + (current_procedure.avg_recovery_time * origin_country.avg_per_night_cost)})
+
 
