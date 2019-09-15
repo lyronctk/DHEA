@@ -6,7 +6,7 @@ import requests
 import json
 
 
-AMADEUS_ACCESS_TOKEN = 'pobkR0n9BxZtgsGzCxxwijc2GtdQ'
+AMADEUS_ACCESS_TOKEN = 'Aw3VklcCfniYIq6wXK9AVAEFEycW'
 FLIGHT_OFFERS_URL = "https://test.api.amadeus.com/v1/shopping/flight-offers"
 NUM_FLIGHTS = 100
 

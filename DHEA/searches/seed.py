@@ -1,5 +1,6 @@
 # run `python manage.py shell` and paste below code
 
+from searches.models import Country
 import random
 
 countries = ['Australia', 'Canada', 'France', 'United Kingdom', 'United States of America']
