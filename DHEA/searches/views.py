@@ -1,3 +1,7 @@
+# OPERATION_NAME_HOLDER = 'Cataract surgery'
+# DEPARTURE_STR_HOLDER  = '2019-11-01'
+# ORIGIN_HOLDER         = 'BOS'
+
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -33,10 +37,6 @@ def results(request):
 	procedure = request.GET.get('procedure', '')
 	city = request.GET.get('city', '')
 	date = request.GET.get('datepicker', '')
-	
-	# OPERATION_NAME_HOLDER = 'Hip replacement'
-	# DEPARTURE_STR_HOLDER  = '2020-08-01'
-	# ORIGIN_HOLDER         = 'BOS'
 
 	OPERATION_NAME_HOLDER = procedure
 	DEPARTURE_STR_HOLDER  = date

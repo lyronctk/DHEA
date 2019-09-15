@@ -20,7 +20,6 @@
     del{{card.country_name|cut:" "}}R = {{ card.quality_rank }} - {{ origin_country_quality }};
     del{{card.country_name|cut:" "}}C = {{ card.procedure_cost }} - {{ origin_procedure_cost }};
     {{ card.country_name|cut:" "}}color = $("#{{ card.country_name|cut:" "}}waitI").css("color");
-
     $("#{{ card.country_name|cut:" "|cut:"\n" }}").hover(function(){
       $("#{{ card.country_name|cut:" "}}wait").text(Math.abs(del{{card.country_name|cut:" "}}W));
       $("#{{ card.country_name|cut:" "}}rank").text(Math.abs(del{{card.country_name|cut:" "}}R));
@@ -162,7 +161,7 @@
   font-family: "Exo", sans-serif;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  animation: gradientBG 10s ease infinite;
 }
 
 @keyframes gradientBG {
@@ -177,31 +176,4 @@
   }
 }
 
-/*.container {
-  width: 100%;
-  position: absolute;
-  top: 35%;
-  text-align: center;
-}
-
-h1 {
-  font-weight: 300;
-}
-
-h3 {
-  color: #eee;
-  font-weight: 100;
-}
-
-h5 {
-  color:#eee;
-  font-weight:300;
-}
-
-a,
-a:hover {
-  text-decoration: none;
-  color: #ddd;
-}*/
-
-</style>
+</style> 
