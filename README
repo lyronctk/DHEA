@@ -6,7 +6,7 @@ HACKMIT 2019 !!
 
 > Given a target procedure or specialty, our application will present users with an intuitive overview of medical destinations that is complete with a breakdown of wait time, quality, and travel + treatment costs for the top medical facilities within each country.
 
-> Used Django as the web framework with HTML/CSS/JavaScript in the front-end and PostgreSQL in the back. To congregate travel information, we used the Amadeus API along with a simple cost-optimization algorithm. Additionally, we used python to write scripts for database seeding and web scraping.
+> Used Django as the web framework with HTML/CSS/JavaScript in the front-end and PostgreSQL in the back. To aggregate travel information, we used the Amadeus API along with a simple cost-optimization algorithm. Additionally, we used python to write scripts for database seeding and web scraping.
 
 ![image](https://user-images.githubusercontent.com/30359739/64930760-a79a8780-d801-11e9-8f15-f9b73edf58cb.png)
 ![image](https://user-images.githubusercontent.com/30359739/64930762-a8cbb480-d801-11e9-8477-8da3ca0ab3cd.png)
