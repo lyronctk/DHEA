@@ -8,6 +8,5 @@ HACKMIT 2019 !!
 
 > Used Django as the web framework with HTML/CSS/JavaScript in the front-end and PostgreSQL in the back. To congregate travel information, we used the Amadeus API along with a simple cost-optimization algorithm. Additionally, we used python to write scripts for database seeding and web scraping.
 
-<img width="876" alt="Screen Shot 2019-09-15 at 9 59 40 AM" src="https://user-images.githubusercontent.com/30359739/64930760-a79a8780-d801-11e9-8f15-f9b73edf58cb.png">
-
-<img width="859" alt="Screen Shot 2019-09-15 at 9 59 53 AM" src="https://user-images.githubusercontent.com/30359739/64930762-a8cbb480-d801-11e9-8477-8da3ca0ab3cd.png">
+![image](https://user-images.githubusercontent.com/30359739/64930760-a79a8780-d801-11e9-8f15-f9b73edf58cb.png)
+![image](https://user-images.githubusercontent.com/30359739/64930762-a8cbb480-d801-11e9-8477-8da3ca0ab3cd.png)
